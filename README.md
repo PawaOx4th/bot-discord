@@ -7,6 +7,12 @@
     DISCORD_TOKEN=XXX
     SERVER=XXX
     ```
+***
+## 🐳 Dockerfile
+  ```shell
+     docker build -t  test-bot .
+  ```
+
 
 
 <br>
