@@ -1,17 +1,10 @@
-import {
-  ICheckServer,
-  IResServer,
-  IServerStatusName
-} from "./interface/IResServer"
 import dayjs from "dayjs"
-import { WebhookClient, MessageEmbed, ColorResolvable } from "discord.js"
-import utc from "dayjs/plugin/utc"
 import tz from "dayjs/plugin/timezone"
-import cron from "node-cron"
-import axios from "axios"
+import utc from "dayjs/plugin/utc"
 import * as dotenv from "dotenv"
-import { getServerStatus } from "./utils/getServerServices"
+import cron from "node-cron"
 import { sendWithWebhook } from "./utils/discordInstance"
+import { getServerStatus } from "./utils/getServerServices"
 
 dotenv.config()
 dayjs.extend(utc)

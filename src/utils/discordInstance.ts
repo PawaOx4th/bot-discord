@@ -10,10 +10,11 @@ export async function sendWithWebhook(
   })
   const embed = new MessageEmbed()
     .setColor(opt.color || "BLUE")
-    .setDescription(`${message} @here ` || "Empty...")
+    .setDescription(`${message}   ` || "Empty...")
     .setTimestamp()
 
   webhookClient.send({
-    embeds: [embed]
+    embeds: [embed],
+    content: `<@&929374046989193216>`
   })
 }
