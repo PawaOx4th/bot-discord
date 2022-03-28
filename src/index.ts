@@ -16,27 +16,27 @@ let isStart = true
 
 sendWithWebhook("Start", { color: "YELLOW" })
 cron.schedule("* * * * *", async () => {
-  // console.log("🆑 Activated")
   const respose = await getServerStatus()
+  const day = dayjs().format("HH:mm:ss DD/MM/YYYY")
 
   if (isStart) {
     history = respose.status
     isStart = !isStart
     respose.status === "OK"
-      ? await sendWithWebhook(`🏃‍♂️ Server is : OK`, {
+      ? await sendWithWebhook(`🏃‍♂️ [${day}] Server is : OK`, {
           color: "GREEN"
         })
-      : await sendWithWebhook(`📢 Server is : DOWN`, {
+      : await sendWithWebhook(`📢 [${day}] Server is : DOWN`, {
           color: "RED"
         })
   } else {
     if (respose.status === "OK" && respose.status != history) {
-      await sendWithWebhook(`🏃‍♂️ Server is : OK`, {
+      await sendWithWebhook(`🏃‍♂️ [${day}] Server is : OK`, {
         color: "GREEN"
       })
       history = respose.status
     } else if (respose.status === "DOWN" && respose.status != history) {
-      await sendWithWebhook(`📢 Server is : DOWN`, {
+      await sendWithWebhook(`📢 [${day}] Server is : DOWN`, {
         color: "RED"
       })
       history = respose.status
