@@ -10,7 +10,7 @@ export async function getServerStatus(): Promise<ICheckServer> {
   } else {
     try {
       const response = await axios.get<IResServer>(process.env.SERVER)
-      console.log("😸 Response : ", response.data.message)
+      console.log("🔌 Server status : ", response.data.message)
       hasRerturn.status = "OK"
       hasRerturn.data = response.data
     } catch (error) {
