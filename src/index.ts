@@ -5,6 +5,15 @@ import * as dotenv from "dotenv"
 import cron from "node-cron"
 import { sendWithWebhook } from "./utils/discordInstance"
 import { getServerStatus } from "./utils/getServerServices"
+import express, { Application, Request, Response } from "express"
+
+const app: Application = express()
+
+app.get("/", (req: Request, res: Response) => {
+  return res.send({
+    date: dayjs().toISOString()
+  })
+})
 
 dotenv.config()
 dayjs.extend(utc)
@@ -44,4 +53,9 @@ cron.schedule("* * * * *", async () => {
       console.log("🚌 NEXT..")
     }
   }
+})
+
+const port = process.env.PORT || 8080
+app.listen(port, () => {
+  console.log("✅ Server has started !!!")
 })

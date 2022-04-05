@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY package*.json .
 COPY tsconfig.json .
-COPY .env .
+# COPY .env .
 COPY src /app/src
 
 RUN ls -a
