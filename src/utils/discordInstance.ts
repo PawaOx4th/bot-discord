@@ -12,7 +12,7 @@ export function onAlertMeeting() {
 
   const embeb = new MessageEmbed()
     .setColor("ORANGE")
-    .setTitle("💻 Team meeting.")
+    .setTitle(`Team meeting from (${process.env.MESSAGE || `local`})`)
     .setTimestamp()
   webhookClient.send({
     embeds: [embeb]

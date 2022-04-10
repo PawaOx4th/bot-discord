@@ -12,7 +12,7 @@ const app: Application = express()
 
 app.get("/", (req: Request, res: Response) => {
   return res.send({
-    date: dayjs().toISOString()
+    date: dayjs().tz("Asia/Bangkok").format("YYYY/MM/DD HH:mm")
   })
 })
 
@@ -56,13 +56,21 @@ let isStart = true
 //   }
 // })
 
-cron.schedule("25 15 * * 1-5", () => {
-  const day = generateDay()
+cron.schedule(
+  "25 15 * * 1-5",
+  () => {
+    const day = generateDay()
 
-  onAlertMeeting()
-})
+    onAlertMeeting()
+  },
+  {
+    scheduled: true,
+    timezone: "Asia/Bangkok"
+  }
+)
 
 const port = process.env.PORT || 8080
 app.listen(port, () => {
   console.log("✅ Server has started !!!")
+  console.log(`${process.env.MESSAGE || `Local computer`}`)
 })
